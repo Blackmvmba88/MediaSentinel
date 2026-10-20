@@ -12,4 +12,16 @@ Requiere Xcode Command Line Tools con SDK macOS compatible y Swift. Ejecutar `zs
 
 Diagnóstico: `"build/Media Sentinel.app/Contents/MacOS/MediaSentinel" --diagnose`.
 
-Sin dependencias externas ni datos persistentes. La instalación local se realiza copiando el bundle a `~/Applications/Media Sentinel.app`.
+Sin dependencias externas ni datos persistentes. Instalación principal: `/Applications/Media Sentinel.app`; también admite `~/Applications/Media Sentinel.app`.
+
+## Terminal
+
+`open -a "Media Sentinel"` abre la aplicación instalada.
+
+El lanzador `bin/media-sentinel`, instalado en `~/.local/bin/media-sentinel`, permite:
+
+- `media-sentinel`: abrir la app.
+- `media-sentinel --diagnose`: listar aplicaciones con salida de audio activa.
+- `media-sentinel --help`: mostrar ayuda.
+
+Para instalar el lanzador: `install -m 755 bin/media-sentinel "$HOME/.local/bin/media-sentinel"`. La carpeta `~/.local/bin` debe estar en el PATH.

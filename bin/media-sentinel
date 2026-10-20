@@ -1,0 +1,18 @@
+#!/bin/zsh
+set -euo pipefail
+APP='/Applications/Media Sentinel.app'
+if [[ ! -x "$APP/Contents/MacOS/MediaSentinel" ]]; then
+    APP="$HOME/Applications/Media Sentinel.app"
+fi
+if [[ ! -x "$APP/Contents/MacOS/MediaSentinel" ]]; then
+    print -u2 'Media Sentinel no está instalada en Aplicaciones.'
+    exit 1
+fi
+case "${1:-}" in
+    '') exec /usr/bin/open "$APP" ;;
+    --diagnose)
+        [[ $# == 1 ]] || { print -u2 'Uso: media-sentinel [--diagnose | --help]'; exit 2; }
+        exec "$APP/Contents/MacOS/MediaSentinel" --diagnose ;;
+    --help|-h) print 'Uso: media-sentinel [--diagnose | --help]\nSin argumentos abre la app. --diagnose muestra aplicaciones con salida de audio activa.' ;;
+    *) print -u2 'Uso: media-sentinel [--diagnose | --help]'; exit 2 ;;
+esac
