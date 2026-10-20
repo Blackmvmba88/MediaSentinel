@@ -2,7 +2,7 @@
 
 App nativa para macOS 14.2 o posterior que enumera procesos con salida de audio activa mediante Core Audio. Actualiza cada 1.5 segundos y agrupa procesos auxiliares con su app cuando puede resolver su ascendencia.
 
-**Ver** abre la app para pausar desde su reproductor. **Cerrar** solicita cerrar toda la app. **Forzar** requiere confirmación y puede perder cambios sin guardar. Los procesos sin una app visible se revisan en Monitor de Actividad; no se terminan automáticamente.
+**Ver** abre la app para pausar desde su reproductor. **Cerrar** solicita cerrar toda la app. **Detener audio** termina un proceso sin ventana (como QuickLookUIService) con SIGTERM, previa confirmación. **Forzar** usa SIGKILL para estos procesos o fuerza la salida de la app y puede perder cambios sin guardar. Antes de cerrar se verifica actividad de audio, usuario e identidad de inicio del proceso. Detener Quick Look cierra la vista previa, conservando el archivo original.
 
 No identifica canciones ni pestañas individuales, ni detecta videos sin salida de audio. Actividad de Core Audio no garantiza sonido audible: una app puede mantener la salida abierta con silencio. No graba audio, no usa red y no requiere permisos de micrófono ni Accesibilidad.
 
